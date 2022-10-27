@@ -1,0 +1,68 @@
+[
+  {
+      "id": 1,
+      "title": "What is the past form of 'eat'?",
+      "options": [
+          "eat",
+          "ate",
+          "eaten",
+          "have ate"
+      ],
+      "answer": "ate"
+  },
+  {
+      "id": 2,
+      "title": "Which sentence is present continuous tense?",
+      "options": [
+          "I eat rice",
+          "I am eating rice",
+          "I have ate rice",
+          "I have been eating rice for 1 year"
+      ],
+      "answer": "I am eating rice"
+  },
+  {
+      "id": 3,
+      "title": "Which sentence is present perfect continuous tense?",
+      "options": [
+          "I eat rice",
+          "I am eating rice",
+          "I have ate rice",
+          "I have been eating rice for 1 year"
+      ],
+      "answer": "I have been eating rice for 1 year"
+  },
+  {
+      "id": 4,
+      "title": "Which sentence is past continuous tense?",
+      "options": [
+          "I eat rice",
+          "I was eating rice",
+          "I have ate rice",
+          "I have been eating rice for 1 year"
+      ],
+      "answer": "I was eating rice"
+  },
+  {
+      "id": 5,
+      "title": "Which sentence is present  tense?",
+      "options": [
+          "I eat rice",
+          "I am eating rice",
+          "I have ate rice",
+          "I have been eating rice for 1 year"
+      ],
+      "answer": "I eat rice"
+  },
+  {
+      "id": 6,
+      "title": "Which sentence is past tense?",
+      "options": [
+          "I ate rice",
+          "I am eating rice",
+          "I have ate rice",
+          "I have been eating rice for 1 year"
+      ],
+      "answer": "I ate rice"
+  }
+]
