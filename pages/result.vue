@@ -1,9 +1,18 @@
 <template>
-  <div class="page-container">
-    <div class="card-container">
-      <h1>MCQ RESULT</h1>
-      <p>You got {{ score }} number</p>
-      <button @click="gotoHomePage">try again</button>
+  <div class="result-page">
+    <div class="result-container">
+      <div class="result-card">
+        <img
+          class="congrats-image"
+          src="~/static/images/congrats2 1.png"
+          alt=""
+        />
+        <h1 class="header-title">MCQ Result</h1>
+        <p class="score">
+          You Got <span class="color-blue">{{ score }}</span> Score
+        </p>
+        <button class="btn-primary" @click="gotoHomePage">START AGAIN</button>
+      </div>
     </div>
   </div>
 </template>
@@ -30,18 +39,48 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/styles/style.scss';
-.page-container {
-  padding: 2rem 2rem;
-  background: #f1f1f9;
-  min-height: 100vh;
+.result-page {
+  background: linear-gradient(269.85deg, #ffdf64 0.12%, #f4d456 99.86%);
+  height: 100vh;
 }
-
-/* MAIN WORK PLACE  */
-.card-container {
-  width: 90%;
-  max-width: 500px;
-  margin: auto;
-  background: #fff;
-  padding: 2rem;
+.result-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .result-card {
+    width: 450px;
+    background: #ffffff;
+    box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .congrats-image {
+      width: 200px;
+    }
+    .header-title {
+      font-family: 'Raleway';
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 53px;
+      color: #000000;
+      margin: 1rem 0 0.5rem 0;
+    }
+    .score {
+      font-family: 'Raleway';
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 29px;
+      text-align: center;
+      color: #373434;
+      margin-bottom: 2rem;
+      .color-blue {
+        color: #5549d3;
+        font-weight: 700;
+      }
+    }
+  }
 }
 </style>

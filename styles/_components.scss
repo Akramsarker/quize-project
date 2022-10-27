@@ -1,13 +1,12 @@
 @import '_variables.scss';
 .btn {
   padding: 0.75rem 2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  border: none;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 24px;
-  font-family: $font-primary;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 29px;
+  color: #FFFFFF;
   &:focus {
     outline: none;
   }
@@ -18,13 +17,20 @@
   }
 }
 .btn-primary {
-  color: #f8f8f8;
-  background-color: #7188f9;
+  background: #000000;
+  border-radius: 5px;
+  padding: 0.75rem 0;
+  font-family: 'Raleway';
+  font-weight: 700;
+  font-size: 20px;
+  color: #FFFFFF;
+  cursor: pointer;
+  width: 90%;
   transition: all 0.3s;
 
   &:hover,
   &:active {
-    background-color: rgba(#7188f9, 0.8);
+    background: #131212;
   }
 }
 
@@ -63,15 +69,7 @@
   }
 }
 
-.btn-sm {
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 22px;
-  font-weight: 400;
-  letter-spacing: 1px;
-}
+
 input[type='text'],
 input[type='number'],
 input[type='password'],

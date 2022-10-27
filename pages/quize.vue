@@ -1,23 +1,40 @@
 <template>
-  <div class="page-container">
-    <div class="time">
-      <h1>Remaining Time:</h1>
-      <span>{{ displayHours }}:{{ minutes }}:{{ seconds }}</span>
+  <div class="quize-page">
+    <div class="container">
+      <div class="remaining-card">
+        <div class="time-count">
+          <h1 class="time-header">
+            Remaining Time:
+            <span>00:10:00</span>
+          </h1>
+        </div>
+        <div class="btn-container">
+          <button class="btn-primary" @click="gotoNextStep">Finish</button>
+        </div>
+      </div>
 
-      <p>result: {{ resultCount }}</p>
-    </div>
-    <div v-for="(quize, id) in quizes" :key="id" class="card">
-      <h1>
-        <span>{{ quize.id }}.</span>{{ quize.title }}
-      </h1>
-      <div v-for="option in quize.options" :key="option">
-        <label for=""
-          ><input type="radio" @click="handleInput(quize.id, option)" />
-          {{ option }}
-        </label>
+      <div v-for="(quize, id) in quizes" :key="id" class="quize-card">
+        <h1 class="quize-question">
+          <span>{{ quize.id }}.</span>{{ quize.title }}
+        </h1>
+        <div
+          v-for="option in quize.options"
+          :key="option"
+          class="options-field"
+        >
+          <label
+            ><input
+              :id="option"
+              type="radio"
+              :name="quize.title"
+              :value="option"
+              @click="handleInput(quize.id, option)"
+            />
+            {{ option }}
+          </label>
+        </div>
       </div>
     </div>
-    <button @click="gotoNextStep">Finish</button>
   </div>
 </template>
 
@@ -99,13 +116,68 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/styles/style.scss';
-.page-container {
-  padding: 2rem 2rem;
-  background: #f1f1f9;
+.quize-page {
+  background: #b0b8ff;
   min-height: 100vh;
 }
-
-/* MAIN WORK PLACE  */
+.container {
+  max-width: 773px;
+  margin: auto;
+  padding: 2rem 0;
+  .quize-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 1.2rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .quize-question {
+      font-family: 'Raleway';
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 35px;
+      color: #000000;
+      padding-bottom: 1rem;
+    }
+    .options-field {
+      margin-left: 1.5rem;
+      label {
+        display: block;
+        font-family: 'Raleway';
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 35px;
+        color: #000000;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+      input[type='radio'] {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000000;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+.remaining-card {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1rem;
+  .time-header {
+    font-family: 'Raleway';
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 35px;
+    color: #000000;
+  }
+}
 .card-container {
   width: 90%;
   max-width: 500px;
