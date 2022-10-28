@@ -32,7 +32,6 @@ export default {
 <style lang="scss" scoped>
 @import '~/styles/style.scss';
 .home-page {
-  padding: 2rem 0;
   background: #e0cabc;
   height: 100vh;
 }
@@ -43,7 +42,7 @@ export default {
   height: 100%;
 }
 .showcase-image {
-  max-width: 700px;
+  max-width: 600px;
   position: relative;
   left: -7rem;
 }
