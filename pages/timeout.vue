@@ -39,7 +39,7 @@ export default {
   align-items: center;
   height: 100%;
   .timeout-card {
-    width: 430px;
+    min-width: 420px;
     background: #ffffff;
     box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
@@ -48,15 +48,15 @@ export default {
     flex-direction: column;
     align-items: center;
     .stopwatch-image {
-      width: 200px;
+      width: 180px;
     }
     .header-title {
       font-family: 'Raleway';
-      font-weight: 700;
-      font-size: 40px;
+      font-weight: 600;
+      font-size: 2.188rem;
       line-height: 53px;
       color: #000000;
-      margin: 1rem 0 1.5rem 0;
+      margin: 1rem 0 1.8rem 0;
     }
   }
 }

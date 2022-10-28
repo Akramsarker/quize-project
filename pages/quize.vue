@@ -15,7 +15,7 @@
 
       <div v-for="(quize, id) in quizes" :key="id" class="quize-card">
         <h1 class="quize-question">
-          <span>{{ quize.id }}.</span>{{ quize.title }}
+          <span>{{ quize.id }}.&nbsp;</span>{{ quize.title }}
         </h1>
         <div
           v-for="option in quize.options"
@@ -46,35 +46,19 @@ export default {
   data() {
     return {
       quizes,
-      displayHours: 0,
       displayMinutes: 0,
       displaySeconds: 0,
       resultCount: 0,
-      setMinutes: 10,
+      setMinutes: 10 * 60,
     }
   },
-  computed: {
-    _secends() {
-      return 1000
-    },
-    _minutes() {
-      return this._secends * 60
-    },
-    _hours() {
-      return this._minutes * 60
-    },
-  },
-
   mounted() {
     this.timeRemaining()
   },
   methods: {
     handleInput(id, option) {
-      console.log('id', id, 'option', option)
       const matched = this.quizes.find((question) => question.id === id)
-      console.log(matched.answer)
       if (option === matched.answer) {
-        alert('success')
         this.resultCount += 1
         localStorage.setItem('resultData', this.resultCount)
       }
@@ -85,23 +69,18 @@ export default {
     },
     timeRemaining() {
       const timer = setInterval(() => {
-        const currentYear = new Date()
-        const newYearTime = new Date(2023, 0, 1, 0, 0, 0, 0)
-        // Set background year
-        const diff = newYearTime.getTime() - currentYear.getTime()
-        // if (diff < 0) {
-        //   return clearInterval(timer)
-        // }
-        const m = Math.floor((diff % this._hours) / this._minutes)
-        const s = Math.floor((diff % this._minutes) / this._secends)
+        const minutes = Math.floor(this.setMinutes / 60)
+        const seconds = this.setMinutes - minutes * 60
+        this.setMinutes--
 
-        // Add values to
-        this.displayMinutes = m < 10 ? '0' + m : m
-        this.displaySeconds = s < 10 ? '0' + s : s
+        this.displayMinutes = minutes <= 9 ? '0' + minutes : minutes
+        this.displaySeconds = seconds <= 9 ? '0' + seconds : seconds
+
+        if (this.setMinutes < 0) {
+          this.$router.push('/timeout')
+          return clearInterval(timer)
+        }
       }, 1000)
-      return () => {
-        clearInterval(timer)
-      }
     },
     confetty() {
       const confetti = new JSConfetti()
@@ -164,15 +143,15 @@ export default {
   .quize-card {
     background: #ffffff;
     border-radius: 20px;
-    padding: 2rem;
+    padding: 2rem 2.7rem 1.4rem 2.7rem;
     margin-bottom: 1.2rem;
     &:last-child {
       margin-bottom: 0;
     }
     .quize-question {
       font-family: 'Raleway';
-      font-weight: 700;
-      font-size: 28px;
+      font-weight: 600;
+      font-size: 1.5rem;
       line-height: 35px;
       color: #000000;
       padding-bottom: 1rem;
@@ -183,7 +162,7 @@ export default {
         display: block;
         font-family: 'Raleway';
         font-weight: 400;
-        font-size: 25px;
+        font-size: 1.25rem;
         line-height: 35px;
         color: #000000;
         display: flex;
@@ -191,8 +170,8 @@ export default {
         margin-bottom: 0.5rem;
       }
       input[type='radio'] {
-        width: 20px;
-        height: 20px;
+        width: 17px;
+        height: 17px;
         border: 1px solid #000000;
         margin-right: 0.5rem;
       }
@@ -205,12 +184,15 @@ export default {
   align-items: center;
   background: #ffffff;
   border-radius: 20px;
-  padding: 1.5rem 2rem;
-  margin-bottom: 1rem;
+  padding: 1.3rem 2rem;
+  margin-bottom: 2rem;
+  // position: sticky;
+  // top: 0;
+  // bottom: 1rem;
   .time-header {
     font-family: 'Raleway';
     font-weight: 700;
-    font-size: 28px;
+    font-size: 1.563rem;
     line-height: 35px;
     color: #000000;
   }

@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     gotoHomePage() {
-      this.$router.push('/')
+      this.$router.push('/quize')
     },
   },
 }
@@ -49,7 +49,7 @@ export default {
   align-items: center;
   height: 100%;
   .result-card {
-    width: 450px;
+    min-width: 420px;
     background: #ffffff;
     box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
@@ -58,20 +58,20 @@ export default {
     flex-direction: column;
     align-items: center;
     .congrats-image {
-      width: 200px;
+      width: 180px;
     }
     .header-title {
       font-family: 'Raleway';
       font-weight: 700;
-      font-size: 40px;
+      font-size: 2.188rem;
       line-height: 53px;
       color: #000000;
-      margin: 1rem 0 0.5rem 0;
+      margin: 1rem 0 0 0;
     }
     .score {
       font-family: 'Raleway';
       font-weight: 400;
-      font-size: 20px;
+      font-size: 1.125rem;
       line-height: 29px;
       text-align: center;
       color: #373434;
