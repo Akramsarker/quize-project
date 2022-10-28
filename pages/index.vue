@@ -43,14 +43,15 @@ export default {
   height: 100%;
 }
 .showcase-image {
-  width: 800px;
-  margin-left: -12rem;
+  max-width: 700px;
+  position: relative;
+  left: -7rem;
 }
 .card-container {
   h1 {
     font-family: 'Rosario';
     font-weight: 400;
-    font-size: 45px;
+    font-size: 40px;
     line-height: 55px;
     text-align: center;
     color: #000000;
@@ -65,7 +66,7 @@ export default {
       font-family: 'Raleway';
       font-style: normal;
       font-weight: 600;
-      font-size: 35px;
+      font-size: 30px;
       line-height: 41px;
       text-align: center;
       color: #373434;
@@ -75,7 +76,7 @@ export default {
       font-family: 'Raleway';
       font-style: normal;
       font-weight: 300;
-      font-size: 25px;
+      font-size: 20px;
       line-height: 29px;
       text-align: center;
       color: #373434;
