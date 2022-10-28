@@ -1,9 +1,17 @@
 <template>
-  <div class="page-container">
-    <div class="card-container">
-      <h1>mcq</h1>
-      <p>total 10 question in 10 min</p>
-      <button @click="gotoQuizePage">START</button>
+  <div class="home-page">
+    <div class="container">
+      <div class="image-container">
+        <img class="showcase-image" src="~/static/images/showcase.png" alt="" />
+      </div>
+      <div class="card-container">
+        <h1>MCQ TEST</h1>
+        <div class="start-card">
+          <h3>Total Questions 10 In 10 Minute</h3>
+          <p>MCQ about Tense (English 2nd paper)</p>
+          <button class="btn-primary" @click="gotoQuizePage">START</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -13,10 +21,6 @@ export default {
   data() {
     return {}
   },
-  fetch() {
-    this.fetchAllData()
-  },
-
   methods: {
     gotoQuizePage() {
       this.$router.push('/quize')
@@ -27,18 +31,56 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/styles/style.scss';
-.page-container {
-  padding: 2rem 2rem;
-  background: #f1f1f9;
-  min-height: 100vh;
+.home-page {
+  padding: 2rem 0;
+  background: #e0cabc;
+  height: 100vh;
 }
-
-/* MAIN WORK PLACE  */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.showcase-image {
+  width: 800px;
+  margin-left: -12rem;
+}
 .card-container {
-  width: 90%;
-  max-width: 500px;
-  margin: auto;
-  background: #fff;
-  padding: 2rem;
+  h1 {
+    font-family: 'Rosario';
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 55px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 2.5rem;
+  }
+  .start-card {
+    background: #ffffff;
+    box-shadow: 0px 4px 70px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    h3 {
+      font-family: 'Raleway';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 35px;
+      line-height: 41px;
+      text-align: center;
+      color: #373434;
+      padding-bottom: 1.2rem;
+    }
+    p {
+      font-family: 'Raleway';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 25px;
+      line-height: 29px;
+      text-align: center;
+      color: #373434;
+      padding-bottom: 2rem;
+    }
+  }
 }
 </style>

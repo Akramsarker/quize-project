@@ -5,7 +5,7 @@
         <div class="time-count">
           <h1 class="time-header">
             Remaining Time:
-            <span>00:10:00</span>
+            <span>00:{{ displayMinutes }}:{{ displaySeconds }}</span>
           </h1>
         </div>
         <div class="btn-container">
@@ -39,19 +39,18 @@
 </template>
 
 <script>
-// const swal = require('sweetalert2')
+import JSConfetti from 'js-confetti'
 import quizes from '~/static/test.json'
+
 export default {
   data() {
     return {
       quizes,
-      seconds: 0,
-      minutes: 0,
       displayHours: 0,
       displayMinutes: 0,
       displaySeconds: 0,
-      countDownNone: false,
       resultCount: 0,
+      setMinutes: 10,
     }
   },
   computed: {
@@ -64,39 +63,12 @@ export default {
     _hours() {
       return this._minutes * 60
     },
-    _days() {
-      return this._hours * 24
-    },
   },
-  // created() {
-  //   setTimeout(() => {
-  //     this.countDownNone = true
-  //     this.loading = false
-  //   }, 2000)
-  // },
 
   mounted() {
-    // this.updateCountdown()
+    this.timeRemaining()
   },
   methods: {
-    // updateCountdown() {
-    //   const timer = setInterval(() => {
-    //     const currentYear = new Date()
-    //     const newYearTime = new Date(2023, 0, 1, 0, 0, 0, 0)
-    //     // Set background year
-    //     const diff = newYearTime.getTime() - currentYear.getTime()
-    //     if (diff < 0) {
-    //       return clearInterval(timer)
-    //     }
-    //     const h = Math.floor((diff % this._days) / this._hours)
-    //     const m = Math.floor((diff % this._hours) / this._minutes)
-    //     const s = Math.floor((diff % this._minutes) / this._secends)
-    //     // Add values to
-    //     this.displayMinutes = m < 10 ? '0' + m : m
-    //     this.displaySeconds = s < 10 ? '0' + s : s
-    //     this.displayHours = h < 10 ? '0' + h : h
-    //   }, 1000)
-    // },
     handleInput(id, option) {
       console.log('id', id, 'option', option)
       const matched = this.quizes.find((question) => question.id === id)
@@ -109,6 +81,71 @@ export default {
     },
     gotoNextStep() {
       this.$router.push('/result')
+      this.confetty()
+    },
+    timeRemaining() {
+      const timer = setInterval(() => {
+        const currentYear = new Date()
+        const newYearTime = new Date(2023, 0, 1, 0, 0, 0, 0)
+        // Set background year
+        const diff = newYearTime.getTime() - currentYear.getTime()
+        // if (diff < 0) {
+        //   return clearInterval(timer)
+        // }
+        const m = Math.floor((diff % this._hours) / this._minutes)
+        const s = Math.floor((diff % this._minutes) / this._secends)
+
+        // Add values to
+        this.displayMinutes = m < 10 ? '0' + m : m
+        this.displaySeconds = s < 10 ? '0' + s : s
+      }, 1000)
+      return () => {
+        clearInterval(timer)
+      }
+    },
+    confetty() {
+      const confetti = new JSConfetti()
+      confetti.addConfetti({
+        // emojis: [
+        //   '🌈',
+        //   '⚡️',
+        //   '💥',
+        //   '✨',
+        //   '💫',
+        //   '🌸',
+        //   '🌾',
+        //   '🌻',
+        //   '🌟',
+        //   '♥️',
+        //   '💐',
+        //   '🌷',
+        //   '🌹',
+        //   '🌱',
+        //   '🌿',
+        //   '☘️',
+        //   '🍀',
+        // ],
+        confettiColors: [
+          '#ff0a54',
+          '#f51966',
+          '#ff477e',
+          '#ff7e7e',
+          '#ff7096',
+          '#22c10d',
+          '#00ff83',
+          '#ff85a1',
+          '#0d32e8',
+          '#f6ff00',
+          '#fbb1bd',
+          '#f9bec7',
+          '#800080',
+          '#F0F8FF',
+          '#0000FF',
+          '#a546cb',
+        ],
+        confettiNumber: 500,
+        emojiSize: 100,
+      })
     },
   },
 }
