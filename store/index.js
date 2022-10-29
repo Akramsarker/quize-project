@@ -1,25 +1,28 @@
 import Vuex from 'vuex'
-import exam from './modules/exam/index'
 
 const createStore = () => {
   // eslint-disable-next-line import/no-named-as-default-member
   return new Vuex.Store({
     state: {
-      user: null,
+      totalResult: 0,
+      totalTime: 0,
     },
     getters: {},
     mutations: {
-      setUser(state, payload) {
-        state.user = payload
+      setResult(state, payload) {
+        state.totalResult = payload
+      },
+      setTotalTime(state, payload) {
+        state.totalTime = payload
       },
     },
     actions: {
-      resetState({ commit }) {
-        commit('exam/resetState', null, { root: true })
+      addResult({ commit }, totalResult) {
+        commit('setResult', totalResult)
       },
-    },
-    modules: {
-      exam,
+      totalTime({ commit }, totalTime) {
+        commit('setTotalTime', totalTime)
+      },
     },
   })
 }

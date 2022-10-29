@@ -12,7 +12,6 @@
           <button class="btn-primary" @click="gotoNextStep">Finish</button>
         </div>
       </div>
-
       <div v-for="(quize, id) in quizes" :key="id" class="quize-card">
         <h1 class="quize-question">
           <span>{{ quize.id }}.&nbsp;</span>{{ quize.title }}
@@ -48,10 +47,13 @@ export default {
       quizes,
       displayMinutes: 0,
       displaySeconds: 0,
-      resultCount: 0,
+      countAnswer: 0,
       setMinutes: 10 * 60,
+      countNotCorrectAnswer: 0,
+      totalTakeTime: 0,
     }
   },
+
   mounted() {
     this.timeRemaining()
   },
@@ -59,19 +61,24 @@ export default {
     handleInput(id, option) {
       const matched = this.quizes.find((question) => question.id === id)
       if (option === matched.answer) {
-        this.resultCount += 1
-        localStorage.setItem('resultData', this.resultCount)
+        this.countAnswer += 1
+        this.$store.dispatch('addResult', this.countAnswer)
+      } else {
+        this.countNotCorrectAnswer += 1
       }
     },
     gotoNextStep() {
       this.$router.push('/result')
       this.confetty()
+      this.$store.dispatch('totalTime', this.totalTakeTime)
     },
     timeRemaining() {
       const timer = setInterval(() => {
         const minutes = Math.floor(this.setMinutes / 60)
         const seconds = this.setMinutes - minutes * 60
-        this.setMinutes--
+        const takeTime = this.setMinutes--
+
+        this.totalTakeTime = takeTime
 
         this.displayMinutes = minutes <= 9 ? '0' + minutes : minutes
         this.displaySeconds = seconds <= 9 ? '0' + seconds : seconds
@@ -186,9 +193,9 @@ export default {
   border-radius: 20px;
   padding: 1.3rem 2rem;
   margin-bottom: 2rem;
-  // position: sticky;
-  // top: 0;
-  // bottom: 1rem;
+  position: sticky;
+  top: 2rem;
+  box-shadow: 1px 1px 20px rgba(#2200869e, 0.5);
   .time-header {
     font-family: 'Raleway';
     font-weight: 700;

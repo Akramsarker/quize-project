@@ -9,8 +9,13 @@
         />
         <h1 class="header-title">MCQ Result</h1>
         <p class="score">
-          You Got <span class="color-blue">{{ score }}</span> Score
+          You Got <span class="color-blue">{{ totalResult }}</span> Score
         </p>
+        <h4 class="took-time">
+          Took Times <span class="color-blue">{{ filterMinutes }}</span> Minutes
+          <span class="color-blue">{{ filterSeconds }}</span>
+          Seconds
+        </h4>
         <button class="btn-primary" @click="gotoHomePage">START AGAIN</button>
       </div>
     </div>
@@ -21,13 +26,40 @@
 export default {
   data() {
     return {
-      score: 0,
+      data() {
+        return {
+          totalTimes: 600,
+        }
+      },
     }
   },
-  computed: {},
-  mounted() {
-    const score = localStorage.getItem('resultData')
-    this.score = score
+  computed: {
+    totalResult() {
+      return this.$store.state.totalResult
+    },
+    totalTakeTime() {
+      return this.$store.state.totalTime
+    },
+    finalTime() {
+      return 600 - this.totalTakeTime
+    },
+    convertMinutes() {
+      return Math.floor(this.finalTime / 60)
+      // ff <= 9 ? '0' + this.ff : this.ff
+    },
+    filterMinutes() {
+      return this.convertMinutes <= 9
+        ? '0' + this.convertMinutes
+        : this.convertMinutes
+    },
+    convertSeconds() {
+      return Math.floor(this.finalTime - this.convertMinutes * 60)
+    },
+    filterSeconds() {
+      return this.convertSeconds <= 9
+        ? '0' + this.convertSeconds
+        : this.convertSeconds
+    },
   },
   methods: {
     gotoHomePage() {
@@ -75,11 +107,19 @@ export default {
       line-height: 29px;
       text-align: center;
       color: #373434;
+      margin-bottom: 0.5rem;
+    }
+    .color-blue {
+      color: #5549d3;
+      font-weight: 700;
+    }
+    .took-time {
+      font-family: 'Raleway';
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 29px;
+      color: #373434;
       margin-bottom: 2rem;
-      .color-blue {
-        color: #5549d3;
-        font-weight: 700;
-      }
     }
   }
 }
