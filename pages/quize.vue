@@ -12,22 +12,19 @@
           <button class="btn-primary" @click="gotoNextStep">Finish</button>
         </div>
       </div>
-      <div v-for="(quize, id) in quizes" :key="id" class="quize-card">
+      <div v-for="quiz in quizes" :key="quiz.id" class="quize-card">
         <h1 class="quize-question">
-          <span>{{ quize.id }}.&nbsp;</span>{{ quize.title }}
+          <span>{{ quiz.id }}.&nbsp;</span>{{ quiz.title }}
         </h1>
-        <div
-          v-for="option in quize.options"
-          :key="option"
-          class="options-field"
-        >
+        <div v-for="option in quiz.options" :key="option" class="options-field">
           <label
             ><input
               :id="option"
               type="radio"
-              :name="quize.title"
+              :name="quiz.title"
+              :disabled="givenAnswer[quiz.id]"
               :value="option"
-              @click="handleInput(quize.id, option)"
+              @click="handleInput(quiz.id, option)"
             />
             {{ option }}
           </label>
@@ -51,15 +48,20 @@ export default {
       setMinutes: 10 * 60,
       countNotCorrectAnswer: 0,
       totalTakeTime: 0,
+      givenAnswer: {},
     }
   },
 
   mounted() {
     this.timeRemaining()
+    this.quizes.forEach((quiz) => {
+      this.givenAnswer[quiz.id] = null
+    })
   },
   methods: {
     handleInput(id, option) {
       const matched = this.quizes.find((question) => question.id === id)
+      this.givenAnswer[id] = option
       if (option === matched.answer) {
         this.countAnswer += 1
         this.$store.dispatch('addResult', this.countAnswer)
