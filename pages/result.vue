@@ -45,7 +45,6 @@ export default {
     },
     convertMinutes() {
       return Math.floor(this.finalTime / 60)
-      // ff <= 9 ? '0' + this.ff : this.ff
     },
     filterMinutes() {
       return this.convertMinutes <= 9
