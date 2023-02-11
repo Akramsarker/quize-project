@@ -24,14 +24,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      data() {
-        return {
-          totalTimes: 600,
-        }
-      },
-    }
+    data() {
+      return {
+        totalTimes: 600,
+      }
+    },
   },
   computed: {
     totalResult() {
